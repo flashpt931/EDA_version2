@@ -1,10 +1,11 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "functions.h"
 #include "structs.h"
 #include <algorithm>
 #include "menu.h"
+#include "seccoes.h"
+#include "organizacao_Pecas.h"
 #define MAX_LISTA 50
 #define MAX 1000
 
