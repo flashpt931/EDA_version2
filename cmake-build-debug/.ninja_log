@@ -1,0 +1,26 @@
+# ninja log v5
+816	1119	7332863434204841	ProjetoEDA.exe	e9b3f6b3f05ccae
+3	782	7332863430929877	CMakeFiles/ProjetoEDA.dir/main.cpp.obj	aa11f9cc1c75bae9
+25	806	7332863431094347	CMakeFiles/ProjetoEDA.dir/Abertura_de_ficheiro.cpp.obj	4d1299710ee80565
+19	816	7332863431261409	CMakeFiles/ProjetoEDA.dir/Functions.cpp.obj	3094c405855013d8
+32	779	7332863430893177	CMakeFiles/ProjetoEDA.dir/menu.cpp.obj	aa3bf8fb43f22870
+28	498	7332863712602698	CMakeFiles/ProjetoEDA.dir/menu.cpp.obj	aa3bf8fb43f22870
+3	563	7332863713250099	CMakeFiles/ProjetoEDA.dir/main.cpp.obj	aa11f9cc1c75bae9
+22	568	7332863713290292	CMakeFiles/ProjetoEDA.dir/Abertura_de_ficheiro.cpp.obj	4d1299710ee80565
+17	635	7332863713988343	CMakeFiles/ProjetoEDA.dir/Functions.cpp.obj	3094c405855013d8
+635	781	7332863715392804	ProjetoEDA.exe	e9b3f6b3f05ccae
+20	476	7332863803876183	CMakeFiles/ProjetoEDA.dir/menu.cpp.obj	aa3bf8fb43f22870
+2	486	7332863803991354	CMakeFiles/ProjetoEDA.dir/main.cpp.obj	aa11f9cc1c75bae9
+25	539	7332863804503271	CMakeFiles/ProjetoEDA.dir/Abertura_de_ficheiro.cpp.obj	4d1299710ee80565
+15	553	7332863804667955	CMakeFiles/ProjetoEDA.dir/Functions.cpp.obj	3094c405855013d8
+554	688	7332863805942627	ProjetoEDA.exe	e9b3f6b3f05ccae
+33	481	7332864020399960	CMakeFiles/ProjetoEDA.dir/menu.cpp.obj	aa3bf8fb43f22870
+3	530	7332864020884781	CMakeFiles/ProjetoEDA.dir/main.cpp.obj	aa11f9cc1c75bae9
+26	531	7332864020884781	CMakeFiles/ProjetoEDA.dir/Abertura_de_ficheiro.cpp.obj	4d1299710ee80565
+18	587	7332864021436026	CMakeFiles/ProjetoEDA.dir/Functions.cpp.obj	3094c405855013d8
+587	719	7332864022739368	ProjetoEDA.exe	e9b3f6b3f05ccae
+112	2523	7333341219889594	CMakeFiles/ProjetoEDA.dir/menu.cpp.obj	aa3bf8fb43f22870
+119	2530	7333341219934831	CMakeFiles/ProjetoEDA.dir/Abertura_de_ficheiro.cpp.obj	4d1299710ee80565
+37	2536	7333341219990055	CMakeFiles/ProjetoEDA.dir/main.cpp.obj	aa11f9cc1c75bae9
+105	2584	7333341220541363	CMakeFiles/ProjetoEDA.dir/Functions.cpp.obj	3094c405855013d8
+2584	2918	7333341223834651	ProjetoEDA.exe	e9b3f6b3f05ccae
