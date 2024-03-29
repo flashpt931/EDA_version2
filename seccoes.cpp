@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "structs.h"
 #include "Abertura_de_ficheiro.h"
+#include <iostream>
 #define MAX 50
 
 using namespace std;

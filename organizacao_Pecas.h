@@ -13,6 +13,7 @@ bool comparaMarca(const peca& a, const peca& b);
 void ordenarPorMarca(peca lista_chegada[],int tamanho_lista_chegada);
 peca criarPeca_de_categoria_seccao(int numeros_de_series_ja_saidos[], int &tamanho, string categorias);
 void deposito_de_pecas_na_lista_de_chegada(peca lista_chegada[MAX],int quantidade_de_pecas, int &numero_seccoes, seccao * armazem,int* &numeros_saidos,int &tamanho_dos_numeros_saidos,int &tamanho_da_lista_de_chegada);
-
-
+void apagar_peca1(peca pecas[], int& tamanho_array, int indice);
+void apagar_peca(peca &uma_peca);
+void vendas(seccao *armazem,int numero_seccoes, int &total_de_faturacao);
 #endif //PROJETOEDA_ORGANIZACAO_PECAS_H

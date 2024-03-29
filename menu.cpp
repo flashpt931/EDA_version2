@@ -2,6 +2,7 @@
 
 using namespace std;
 
+
 int menu() {
     cout << "\t*******************************************\n\t***** Armazem EDA | Total Faturacao 0 *****\n\t*******************************************";
     int opcao;

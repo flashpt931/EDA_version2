@@ -25,14 +25,20 @@ int criar_serie(int *numeros_de_series_ja_saidos, int &tamanho) {
     return numeros_de_series_ja_saidos[tamanho-1];
 }
 
-bool comparaMarca(const peca& a, const peca& b) {
-    return a.marca < b.marca;
+/*bool comparaMarca(const peca& a, const peca& b) {
+    return a.marca == b.marca;
 }
 void ordenarPorMarca(peca lista_chegada[],int tamanho_lista_chegada) {
     sort(lista_chegada, lista_chegada + tamanho_lista_chegada, comparaMarca);
 }
-
-
+void ordenarPorMarca(peca lista_chegada[],int tamanho_lista_chegada){
+    for (int index = 2; index < tamanho_lista_chegada; index++){
+        for(int j = 1; j <index;j++){
+            if ()
+        }
+    }
+}
+*/
 int preco_peca (){
     return ((rand()%179) + 2) * 5; //10-900
 }
@@ -54,5 +60,39 @@ void deposito_de_pecas_na_lista_de_chegada(peca lista_chegada[MAX],int quantidad
         int a = rand()%numero_seccoes;
         lista_chegada[index] = criarPeca_de_categoria_seccao(numeros_saidos,tamanho_dos_numeros_saidos,armazem[a].categoria);
         tamanho_da_lista_de_chegada++;
+    }
+}
+bool foi_vendido_ou_nao(int probabilidade){
+    bool foi_vendido_ou_nao = (probabilidade >= rand()%101);
+    return foi_vendido_ou_nao;
+}
+void apagar_peca(peca &uma_peca){
+    uma_peca.preco = 0;
+    uma_peca.probabilidade_de_ser_vendida = 0;
+    uma_peca.categoria = "";
+    uma_peca.marca = "";
+    uma_peca.numero_de_serie = 0;
+}
+void ordenar_pecas_existentes(peca *lista_de_pecas,int indice, int quantidade_da_seccao){
+    peca aux = lista_de_pecas[indice];
+    for(;indice< quantidade_da_seccao-1; indice++){
+        lista_de_pecas[indice] = lista_de_pecas[indice+1];
+    }
+    lista_de_pecas[quantidade_da_seccao-1] = lista_de_pecas[indice];
+}
+
+void vendas(seccao *armazem,int numero_seccoes, int &total_de_faturacao){
+    for (int index = 0; index< numero_seccoes;index++){
+        //entrou na seccao
+        for (int j = 0; j <armazem[index].quantidade_na_seccao; j++){
+            //entrou na lista de pecas
+            if(foi_vendido_ou_nao(armazem[index].pecas_aqui[j].probabilidade_de_ser_vendida)){
+                //foi vendido
+                total_de_faturacao += armazem[index].pecas_aqui[j].preco;
+                apagar_peca(armazem[index].pecas_aqui[j]);
+                ordenar_pecas_existentes(armazem[index].pecas_aqui,index,armazem[index].quantidade_na_seccao);
+                armazem[index].quantidade_na_seccao--;
+            }
+        }
     }
 }
