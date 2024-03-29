@@ -25,3 +25,21 @@ void criar_seccao(int &numero_de_seccoes, seccao *armazem) {
         //cout << "A Seccao " << armazem[index].ID << " || Categoria: " << armazem[index].categoria << " || Tamanho: " << armazem[index].tamanho_da_seccao << endl;
     }
 }
+void alterar_categoria(char id_local, string nova_categoria, seccao *armazem, int &numero_de_seccoes) {
+    cout<<"qual seccao que pertende alterar?";
+    cin>>id_local;
+    bool seccao_encontrada = false;
+    for (int i = 0; i < numero_de_seccoes; i++) {
+        if (armazem[i].ID == id_local) {
+            cout << "Nova categoria para a seccão " << id_local << ": ";
+            cin >> nova_categoria;
+            armazem[i].categoria = nova_categoria;
+            armazem[i].quantidade_na_seccao = 0;
+            seccao_encontrada = true;
+            break; // Não é necessário continuar procurando depois de encontrar a seção
+        }
+    }
+    if (!seccao_encontrada) {
+        cout << "Essa seccao nao existe." << endl;
+    }
+}
