@@ -1,23 +1,20 @@
 #include <iostream>
-#include <cstdlib>
 #include <string>
 #include "structs.h"
-#include "Abertura_de_ficheiro.h"
-#include <algorithm>
 #define MAX 50
 
 using namespace std;
 
 
-void primeira_impressao(seccao *armazem, peca *lista_chegada, int numero_seccoes, int &tamanho_lista_chegada){
+void primeira_impressao(seccao *&armazem, peca *lista_chegada, int numero_seccoes, int &tamanho_lista_chegada, int &total_de_faturacao){
     cout << "\t\t*************************************************\t" << endl;
-    cout << "\t\t***** Armazem EDA " << "|" << " Total Faturacao " << 0 << " Euros " << "*****\t" << endl;
+    cout << "\t\t***** Armazem EDA " << "|" << " Total Faturacao " << total_de_faturacao << " Euros " << "*****\t" << endl;
     cout << "\t\t*************************************************\t" << endl;
 
     for (int i=0; i < numero_seccoes; i++){
-        cout << "Seccao " << armazem[i].ID << " | Categoria " << armazem[i].categoria << " | Capacidade :" << armazem[i].tamanho_da_seccao << " | Quantidade :" << armazem[i].quantidade_da_seccao << " | Faturacao " << armazem[i].faturacao_desta_seccao<< endl;
+        cout << "Seccao " << armazem[i].ID << " | Categoria " << armazem[i].categoria << " | Capacidade :" << armazem[i].tamanho_da_seccao << " | Quantidade :" << armazem[i].quantidade_na_seccao << " | Faturacao " << armazem[i].faturacao_desta_seccao<< endl;
 
-        for (int j=0; j < armazem[i].quantidade_da_seccao; j++){
+        for (int j=0; j < armazem[i].quantidade_na_seccao; j++){
             cout << "\t" << armazem[i].pecas_aqui[j].marca << " | " << armazem[i].pecas_aqui[j].categoria << " | " << armazem[i].pecas_aqui[j].numero_de_serie << " | " << armazem[i].pecas_aqui[j].preco << " Euros" << endl;
         }
     }

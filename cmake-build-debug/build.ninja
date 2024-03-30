@@ -79,6 +79,12 @@ build CMakeFiles/ProjetoEDA.dir/organizacao_Pecas.cpp.obj: CXX_COMPILER__Projeto
   OBJECT_DIR = CMakeFiles\ProjetoEDA.dir
   OBJECT_FILE_DIR = CMakeFiles\ProjetoEDA.dir
 
+build CMakeFiles/ProjetoEDA.dir/Funcoes_de_impressao.cpp.obj: CXX_COMPILER__ProjetoEDA_unscanned_Debug C$:/Users/octav/Downloads/ProjetoEDA$ -$ Cópia/Funcoes_de_impressao.cpp || cmake_object_order_depends_target_ProjetoEDA
+  DEP_FILE = CMakeFiles\ProjetoEDA.dir\Funcoes_de_impressao.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\ProjetoEDA.dir
+  OBJECT_FILE_DIR = CMakeFiles\ProjetoEDA.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target ProjetoEDA
@@ -87,7 +93,7 @@ build CMakeFiles/ProjetoEDA.dir/organizacao_Pecas.cpp.obj: CXX_COMPILER__Projeto
 #############################################
 # Link the executable ProjetoEDA.exe
 
-build ProjetoEDA.exe: CXX_EXECUTABLE_LINKER__ProjetoEDA_Debug CMakeFiles/ProjetoEDA.dir/main.cpp.obj CMakeFiles/ProjetoEDA.dir/Abertura_de_ficheiro.cpp.obj CMakeFiles/ProjetoEDA.dir/menu.cpp.obj CMakeFiles/ProjetoEDA.dir/seccoes.cpp.obj CMakeFiles/ProjetoEDA.dir/organizacao_Pecas.cpp.obj
+build ProjetoEDA.exe: CXX_EXECUTABLE_LINKER__ProjetoEDA_Debug CMakeFiles/ProjetoEDA.dir/main.cpp.obj CMakeFiles/ProjetoEDA.dir/Abertura_de_ficheiro.cpp.obj CMakeFiles/ProjetoEDA.dir/menu.cpp.obj CMakeFiles/ProjetoEDA.dir/seccoes.cpp.obj CMakeFiles/ProjetoEDA.dir/organizacao_Pecas.cpp.obj CMakeFiles/ProjetoEDA.dir/Funcoes_de_impressao.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ProjetoEDA.dir

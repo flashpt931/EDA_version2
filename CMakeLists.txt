@@ -10,4 +10,5 @@ add_executable(ProjetoEDA main.cpp
         Abertura_de_ficheiro.h
         seccoes.cpp
         organizacao_Pecas.h
-        organizacao_Pecas.cpp)
+        organizacao_Pecas.cpp
+        Funcoes_de_impressao.cpp)

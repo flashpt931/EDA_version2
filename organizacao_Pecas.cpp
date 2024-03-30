@@ -55,10 +55,10 @@ peca criarPeca_de_categoria_seccao(int numeros_de_series_ja_saidos[], int &taman
     novaPeca.probabilidade_de_ser_vendida = atribuicao_de_probabilade();
     return novaPeca;
 }
-void deposito_de_pecas_na_lista_de_chegada(peca lista_chegada[MAX],int quantidade_de_pecas, int &numero_seccoes, seccao * armazem,int* &numeros_saidos,int &tamanho_dos_numeros_saidos,int &tamanho_da_lista_de_chegada){
+void deposito_de_pecas_na_lista_de_chegada(peca *lista_chegada,int quantidade_de_pecas, int &numero_seccoes, seccao * armazem,int* &numeros_saidos,int &tamanho_dos_numeros_saidos,int &tamanho_da_lista_de_chegada){
     for (int index = 0; index < quantidade_de_pecas; index++){
         int a = rand()%numero_seccoes;
-        lista_chegada[index] = criarPeca_de_categoria_seccao(numeros_saidos,tamanho_dos_numeros_saidos,armazem[a].categoria);
+        lista_chegada[tamanho_da_lista_de_chegada] = criarPeca_de_categoria_seccao(numeros_saidos,tamanho_dos_numeros_saidos,armazem[a].categoria);
         tamanho_da_lista_de_chegada++;
     }
 }
@@ -73,12 +73,11 @@ void apagar_peca(peca &uma_peca){
     uma_peca.marca = "";
     uma_peca.numero_de_serie = 0;
 }
-void ordenar_pecas_existentes(peca *lista_de_pecas,int indice, int quantidade_da_seccao){
-    peca aux = lista_de_pecas[indice];
+void ordenar_pecas_existentes(peca *&lista_de_pecas,int indice, int &quantidade_da_seccao){
     for(;indice< quantidade_da_seccao-1; indice++){
         lista_de_pecas[indice] = lista_de_pecas[indice+1];
     }
-    lista_de_pecas[quantidade_da_seccao-1] = lista_de_pecas[indice];
+    quantidade_da_seccao--;
 }
 
 void vendas(seccao *armazem,int numero_seccoes, int &total_de_faturacao){
@@ -88,11 +87,79 @@ void vendas(seccao *armazem,int numero_seccoes, int &total_de_faturacao){
             //entrou na lista de pecas
             if(foi_vendido_ou_nao(armazem[index].pecas_aqui[j].probabilidade_de_ser_vendida)){
                 //foi vendido
+                cout << "foi vendido " <<  " por "<< armazem[index].pecas_aqui[j].preco << endl;
                 total_de_faturacao += armazem[index].pecas_aqui[j].preco;
                 apagar_peca(armazem[index].pecas_aqui[j]);
-                ordenar_pecas_existentes(armazem[index].pecas_aqui,index,armazem[index].quantidade_na_seccao);
-                armazem[index].quantidade_na_seccao--;
+                ordenar_pecas_existentes(armazem[index].pecas_aqui,j,armazem[index].quantidade_na_seccao);
+
             }
         }
     }
+}
+void remocao_de_peca_para_o_armazem(seccao *&armazem,peca *&lista_de_pecas,int n_de_pecas_para_entrar,int numero_seccoes, int &tamanho_lista_chegada){
+    for(int i= 0; i<n_de_pecas_para_entrar;i++){
+        for(int j = 0; j<numero_seccoes;j++){
+            if(lista_de_pecas[i].categoria == armazem[j].categoria){
+                armazem[j].pecas_aqui[armazem[j].quantidade_na_seccao] = lista_de_pecas[i];
+                cout << "j e igual a " << j << " i e igual a " << i << " esta peca " << armazem[j].pecas_aqui[armazem[j].quantidade_na_seccao].numero_de_serie << " e isto " << lista_de_pecas[i].numero_de_serie << endl;
+                ++(armazem[j].quantidade_na_seccao);
+                apagar_peca(lista_de_pecas[i]);
+                ordenar_pecas_existentes(lista_de_pecas,i, tamanho_lista_chegada);
+                i--;
+                n_de_pecas_para_entrar--;
+                break;
+            }
+        }
+    }
+}
+
+void reseta_seccao(seccao seccao_do_armazem){
+    for (int i = 0; i<seccao_do_armazem.quantidade_na_seccao;i++){
+        apagar_peca(seccao_do_armazem.pecas_aqui[i]);
+    }
+}
+
+void alterar_categoria(seccao *&armazem, int &numero_de_seccoes) {
+    cout<<"Qual seccao pertende alterar?" << endl;
+    char id_local;
+    cin >> id_local;
+    bool seccao_encontrada = false;
+    for (int i = 0; i < numero_de_seccoes; i++) {
+        if (armazem[i].ID == id_local) {
+            cout << "Nova categoria para a seccao " << id_local << ": " << endl;
+            string nova_categoria;
+            cin >> nova_categoria;
+            armazem[i].categoria = nova_categoria;
+            reseta_seccao(armazem[i]);
+            armazem[i].quantidade_na_seccao = 0;
+            seccao_encontrada = true;
+            break;
+        }
+    }
+    if (!seccao_encontrada) {
+        cout << "A seccao selecionada nao existe!" << endl;
+    }
+}
+void vendaManual(seccao* armazem, int numero_de_seccoes, int &total_de_faturacao) {
+    int id_produto;char id_seccao;
+    cout << "Indique a seccao que pretende entrar " << endl;
+    cin >> id_seccao;
+    cout << "Indique o id do produto que pretende vender " << endl;
+    cin >> id_produto;
+    int i = 0;
+    while(i < numero_de_seccoes){ // Loop sobre todas as secções do armazém
+        int j = 0;
+        while(j < armazem[i].tamanho_da_seccao){ // Loop sobre todas as peças na secção atual
+            if( armazem[i].pecas_aqui[j].numero_de_serie == id_produto){ // Verifica se encontrou o produto
+                total_de_faturacao +=armazem[i].pecas_aqui[j].preco;
+                apagar_peca(armazem[i].pecas_aqui[j]);
+                ordenar_pecas_existentes(armazem[i].pecas_aqui,j,armazem[i].quantidade_na_seccao);
+                //Decrementamos o tamanho da secção para "mostrar" a remoção da peça vendida
+                break;
+            }
+            j++;
+        }
+        i++;
+    }
+    cin.clear();
 }
