@@ -133,11 +133,10 @@ void vendas(seccao *armazem,int numero_seccoes, int &total_de_faturacao){
 void remocao_de_peca_para_o_armazem(seccao *&armazem,peca *&lista_de_pecas,int n_de_pecas_para_entrar,int numero_seccoes, int &tamanho_lista_chegada){
     for(int i= 0; i<n_de_pecas_para_entrar;i++){
         for(int j = 0; j<numero_seccoes;j++){
-            if(lista_de_pecas[i].categoria == armazem[j].categoria && armazem[j].quantidade_na_seccao<=armazem[j].tamanho_da_seccao){
-                armazem[j].pecas_aqui[armazem[j].quantidade_na_seccao] = lista_de_pecas[i];
-                cout << "j e igual a " << j << " i e igual a " << i << " esta peca " << armazem[j].pecas_aqui[armazem[j].quantidade_na_seccao].numero_de_serie << " e isto " << lista_de_pecas[i].numero_de_serie << endl;
-                cout << armazem[j].quantidade_na_seccao << armazem[j].tamanho_da_seccao;
-                ++(armazem[j].quantidade_na_seccao);
+            if(lista_de_pecas[i].categoria == armazem[j].categoria && armazem[j].quantidade_na_seccao<armazem[j].tamanho_da_seccao){
+                int quantidade_aqui = armazem[j].quantidade_na_seccao;
+                armazem[j].pecas_aqui[quantidade_aqui] = lista_de_pecas[i];
+                armazem[j].quantidade_na_seccao++;
                 apagar_peca(lista_de_pecas[i]);
                 ordenar_pecas_existentes(lista_de_pecas,i, tamanho_lista_chegada);
                 i--;
