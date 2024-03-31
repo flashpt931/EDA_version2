@@ -55,10 +55,41 @@ peca criarPeca_de_categoria_seccao(int numeros_de_series_ja_saidos[], int &taman
     novaPeca.probabilidade_de_ser_vendida = atribuicao_de_probabilade();
     return novaPeca;
 }
+
+int existe_categoria(peca *lista_chegada,int &tamanho_da_lista_de_chegada,peca peca_criada){
+    int tamanho_auxiliar = tamanho_da_lista_de_chegada;
+    for(; tamanho_auxiliar>0;tamanho_auxiliar--){
+        if (lista_chegada[tamanho_auxiliar-1].categoria == peca_criada.categoria){
+            return tamanho_auxiliar;
+        }
+    }
+    return -1;
+}
+void inserir_peca_ordenada(peca *&lista_chegada,int &tamanho_da_lista_de_chegada,peca peca_criada,int n_peca){
+    peca *auxiliar = new peca[MAX];
+    //copiar informacao de array anterior até à nova peca
+    for(int index = 0;index< n_peca;index++){
+        auxiliar[index] = lista_chegada[index];
+    }
+    auxiliar[n_peca] = peca_criada;
+    for(int j = n_peca+1;j<=tamanho_da_lista_de_chegada;j++){
+        auxiliar[j] = lista_chegada[j-1];
+        cout << lista_chegada[j-1].categoria << endl;
+    }
+    for(int i = 0; i<= tamanho_da_lista_de_chegada;i++){
+        lista_chegada[i] = auxiliar[i];
+    }
+}
 void deposito_de_pecas_na_lista_de_chegada(peca *lista_chegada,int quantidade_de_pecas, int &numero_seccoes, seccao * armazem,int* &numeros_saidos,int &tamanho_dos_numeros_saidos,int &tamanho_da_lista_de_chegada){
     for (int index = 0; index < quantidade_de_pecas; index++){
         int a = rand()%numero_seccoes;
-        lista_chegada[tamanho_da_lista_de_chegada] = criarPeca_de_categoria_seccao(numeros_saidos,tamanho_dos_numeros_saidos,armazem[a].categoria);
+        peca peca_criada = criarPeca_de_categoria_seccao(numeros_saidos,tamanho_dos_numeros_saidos,armazem[a].categoria);
+        int n_peca = existe_categoria(lista_chegada,tamanho_da_lista_de_chegada,peca_criada);
+        if (n_peca== -1 || tamanho_da_lista_de_chegada==0){
+            lista_chegada[tamanho_da_lista_de_chegada]= peca_criada;
+        }else{
+            inserir_peca_ordenada(lista_chegada,tamanho_da_lista_de_chegada,peca_criada,n_peca);
+        }
         tamanho_da_lista_de_chegada++;
     }
 }
@@ -89,6 +120,9 @@ void vendas(seccao *armazem,int numero_seccoes, int &total_de_faturacao){
                 //foi vendido
                 cout << "foi vendido " <<  " por "<< armazem[index].pecas_aqui[j].preco << endl;
                 total_de_faturacao += armazem[index].pecas_aqui[j].preco;
+                armazem[index].numeros_de_serie_vendidos_aqui[armazem[index].tamanho_numeros_de_serie_vendidos_aqui] = armazem[index].pecas_aqui[j].numero_de_serie;
+                armazem[index].tamanho_numeros_de_serie_vendidos_aqui++;
+                armazem[index].faturacao_desta_seccao += armazem[index].pecas_aqui[j].preco;
                 apagar_peca(armazem[index].pecas_aqui[j]);
                 ordenar_pecas_existentes(armazem[index].pecas_aqui,j,armazem[index].quantidade_na_seccao);
 
@@ -99,9 +133,10 @@ void vendas(seccao *armazem,int numero_seccoes, int &total_de_faturacao){
 void remocao_de_peca_para_o_armazem(seccao *&armazem,peca *&lista_de_pecas,int n_de_pecas_para_entrar,int numero_seccoes, int &tamanho_lista_chegada){
     for(int i= 0; i<n_de_pecas_para_entrar;i++){
         for(int j = 0; j<numero_seccoes;j++){
-            if(lista_de_pecas[i].categoria == armazem[j].categoria){
+            if(lista_de_pecas[i].categoria == armazem[j].categoria && armazem[j].quantidade_na_seccao<=armazem[j].tamanho_da_seccao){
                 armazem[j].pecas_aqui[armazem[j].quantidade_na_seccao] = lista_de_pecas[i];
                 cout << "j e igual a " << j << " i e igual a " << i << " esta peca " << armazem[j].pecas_aqui[armazem[j].quantidade_na_seccao].numero_de_serie << " e isto " << lista_de_pecas[i].numero_de_serie << endl;
+                cout << armazem[j].quantidade_na_seccao << armazem[j].tamanho_da_seccao;
                 ++(armazem[j].quantidade_na_seccao);
                 apagar_peca(lista_de_pecas[i]);
                 ordenar_pecas_existentes(lista_de_pecas,i, tamanho_lista_chegada);
@@ -140,7 +175,7 @@ void alterar_categoria(seccao *&armazem, int &numero_de_seccoes) {
         cout << "A seccao selecionada nao existe!" << endl;
     }
 }
-void vendaManual(seccao* armazem, int numero_de_seccoes, int &total_de_faturacao) {
+void vendaManual(seccao* &armazem, int numero_de_seccoes, int &total_de_faturacao,peca *&lista_chegada, int tamanho_lista_chegada) {
     int id_produto;char id_seccao;
     cout << "Indique a seccao que pretende entrar " << endl;
     cin >> id_seccao;
@@ -152,9 +187,25 @@ void vendaManual(seccao* armazem, int numero_de_seccoes, int &total_de_faturacao
         while(j < armazem[i].tamanho_da_seccao){ // Loop sobre todas as peças na secção atual
             if( armazem[i].pecas_aqui[j].numero_de_serie == id_produto){ // Verifica se encontrou o produto
                 total_de_faturacao +=armazem[i].pecas_aqui[j].preco;
-                apagar_peca(armazem[i].pecas_aqui[j]);
-                ordenar_pecas_existentes(armazem[i].pecas_aqui,j,armazem[i].quantidade_na_seccao);
-                //Decrementamos o tamanho da secção para "mostrar" a remoção da peça vendida
+                armazem[i].faturacao_desta_seccao += armazem[i].pecas_aqui[j].preco;
+                int saiu = 0;
+                for(int k= 0; k<tamanho_lista_chegada;k++){
+                    if (lista_chegada[k].categoria==armazem[i].pecas_aqui[j].categoria){
+                        saiu = 1;
+                        armazem[i].pecas_aqui[j]=lista_chegada[k];
+                        apagar_peca(lista_chegada[k]);
+                        ordenar_pecas_existentes(lista_chegada,k, tamanho_lista_chegada);
+                        cout << "entrou neste loop" << endl;
+                        break;
+                    }
+                }
+                cout << "ao menos chegou aqui"<< endl;
+                if (!saiu){
+                    cout << "ao menos chegou aqui1"<< endl;
+                    apagar_peca(armazem[i].pecas_aqui[j]);
+                    ordenar_pecas_existentes(armazem[i].pecas_aqui,j,armazem[i].quantidade_na_seccao);
+                    cout << "ao menos chegou aqui2"<< endl;
+                }
                 break;
             }
             j++;

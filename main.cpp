@@ -20,7 +20,7 @@ int main() {
     criar_seccao(numero_seccoes,armazem);
     int *numeros_saidos = new int[MAX_NUM];
     peca *lista_chegada= new peca[MAX];
-    deposito_de_pecas_na_lista_de_chegada(lista_chegada,9,numero_seccoes, armazem,numeros_saidos,tamanho_dos_numeros_saidos,tamanho_lista_chegada);
+    deposito_de_pecas_na_lista_de_chegada(lista_chegada,10,numero_seccoes, armazem,numeros_saidos,tamanho_dos_numeros_saidos,tamanho_lista_chegada);
     //ordenarPorMarca(lista_chegada, tamanho_lista_chegada);
     //deposito_de_pecas_na_lista_de_chegada(lista_chegada,5,numero_seccoes, armazem,numeros_saidos,tamanho_dos_numeros_saidos,tamanho_lista_chegada);
     //for (int index = 0; index < tamanho_lista_chegada; index++) {
@@ -29,7 +29,7 @@ int main() {
     primeira_impressao(armazem, lista_chegada,numero_seccoes,tamanho_lista_chegada,total_de_faturacao);
     remocao_de_peca_para_o_armazem(armazem,lista_chegada,8,numero_seccoes,tamanho_lista_chegada);
     primeira_impressao(armazem, lista_chegada,numero_seccoes,tamanho_lista_chegada,total_de_faturacao);
-    vendaManual(armazem,numero_seccoes,total_de_faturacao);
+    vendaManual(armazem, numero_seccoes,total_de_faturacao,lista_chegada,tamanho_lista_chegada);
     primeira_impressao(armazem, lista_chegada,numero_seccoes,tamanho_lista_chegada,total_de_faturacao);
 
     /*armazem[0].pecas_aqui[0] = lista_chegada[0];

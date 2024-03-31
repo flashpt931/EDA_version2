@@ -20,5 +20,5 @@ void remocao_de_peca_para_o_armazem(seccao *&armazem, peca *&lista_de_pecas,int 
 void alterar_categoria(seccao *&armazem, int &numero_de_seccoes);
 void alterar_categoria1(char id_local, string nova_categoria, seccao *&armazem, int &numero_de_seccoes);
 void ordenar_pecas_existentes(peca *&lista_de_pecas, int &quantidade_da_seccao);
-void vendaManual(seccao* armazem, int numero_de_seccoes, int &total_de_faturacao);
+void vendaManual(seccao* &armazem, int numero_de_seccoes, int &total_de_faturacao,peca *&lista_chegada, int tamanho_lista_chegada);
 #endif //PROJETOEDA_ORGANIZACAO_PECAS_H

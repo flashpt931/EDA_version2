@@ -24,6 +24,7 @@ struct seccao {
     peca *pecas_aqui = new peca[tamanho_da_seccao];
     int quantidade_na_seccao = 0;
     int faturacao_desta_seccao = 0;
+    int tamanho_numeros_de_serie_vendidos_aqui;
     int *numeros_de_serie_vendidos_aqui = new int[100];
 };
 
