@@ -24,21 +24,6 @@ int criar_serie(int *numeros_de_series_ja_saidos, int &tamanho) {
     numeros_de_series_ja_saidos[tamanho-1] = numero_da_serie;  //adiciona o novo número de série à ultima posição do array
     return numeros_de_series_ja_saidos[tamanho-1]; //retorna o último número de série adicionado ao array
 }
-
-/*bool comparaMarca(const peca& a, const peca& b) {
-    return a.marca == b.marca;
-}
-void ordenarPorMarca(peca lista_chegada[],int tamanho_lista_chegada) {
-    sort(lista_chegada, lista_chegada + tamanho_lista_chegada, comparaMarca);
-}
-void ordenarPorMarca(peca lista_chegada[],int tamanho_lista_chegada){
-    for (int index = 2; index < tamanho_lista_chegada; index++){
-        for(int j = 1; j <index;j++){
-            if ()
-        }
-    }
-}
-*/
 int preco_peca (){ //gera o preço da peça 
     return ((rand()%179) + 2) * 5; //gera um número aleatório entre 10-900 e limita esse número entre 0 e 178; adiciona 2, deslocando o intervalo de 2-180; multiplica por 5 para dar multiplos de 5, entre 10 e 900 
 }
@@ -74,15 +59,15 @@ void inserir_peca_ordenada(peca *&lista_chegada,int &tamanho_da_lista_de_chegada
     auxiliar[n_peca] = peca_criada;
     for(int j = n_peca+1;j<=tamanho_da_lista_de_chegada;j++){
         auxiliar[j] = lista_chegada[j-1];
-        cout << lista_chegada[j-1].categoria << endl;
     }
     for(int i = 0; i<= tamanho_da_lista_de_chegada;i++){
         lista_chegada[i] = auxiliar[i];
     }
+    delete[] auxiliar;
 }
-void deposito_de_pecas_na_lista_de_chegada(peca *lista_chegada,int quantidade_de_pecas, int &numero_seccoes, seccao * armazem,int* &numeros_saidos,int &tamanho_dos_numeros_saidos,int &tamanho_da_lista_de_chegada){
+void deposito_de_pecas_na_lista_de_chegada(peca *lista_chegada,int quantidade_de_pecas, int &numero_de_seccoes, seccao * armazem,int* &numeros_saidos,int &tamanho_dos_numeros_saidos,int &tamanho_da_lista_de_chegada){
     for (int index = 0; index < quantidade_de_pecas; index++){
-        int a = rand()%numero_seccoes;
+        int a = rand()%numero_de_seccoes;
         peca peca_criada = criarPeca_de_categoria_seccao(numeros_saidos,tamanho_dos_numeros_saidos,armazem[a].categoria);
         int n_peca = existe_categoria(lista_chegada,tamanho_da_lista_de_chegada,peca_criada);
         if (n_peca== -1 || tamanho_da_lista_de_chegada==0){
@@ -111,8 +96,8 @@ void ordenar_pecas_existentes(peca *&lista_de_pecas,int indice, int &quantidade_
     quantidade_da_seccao--;
 }
 
-void vendas(seccao *armazem,int numero_seccoes, int &total_de_faturacao){
-    for (int index = 0; index< numero_seccoes;index++){
+void vendas(seccao *armazem,int numero_de_seccoes, int &total_de_faturacao){
+    for (int index = 0; index< numero_de_seccoes;index++){
         //entrou na seccao
         for (int j = 0; j <armazem[index].quantidade_na_seccao; j++){
             //entrou na lista de pecas
@@ -130,9 +115,9 @@ void vendas(seccao *armazem,int numero_seccoes, int &total_de_faturacao){
         }
     }
 }
-void remocao_de_peca_para_o_armazem(seccao *&armazem,peca *&lista_de_pecas,int n_de_pecas_para_entrar,int numero_seccoes, int &tamanho_lista_chegada){
+void remocao_de_peca_para_o_armazem(seccao *&armazem,peca *&lista_de_pecas,int n_de_pecas_para_entrar,int numero_de_seccoes, int &tamanho_lista_chegada){
     for(int i= 0; i<n_de_pecas_para_entrar;i++){
-        for(int j = 0; j<numero_seccoes;j++){
+        for(int j = 0; j<numero_de_seccoes;j++){
             if(lista_de_pecas[i].categoria == armazem[j].categoria && armazem[j].quantidade_na_seccao<armazem[j].tamanho_da_seccao){
                 int quantidade_aqui = armazem[j].quantidade_na_seccao;
                 armazem[j].pecas_aqui[quantidade_aqui] = lista_de_pecas[i];
@@ -180,14 +165,15 @@ void vendaManual(seccao* &armazem, int numero_de_seccoes, int &total_de_faturaca
     cin >> id_seccao;
     cout << "Indique o id do produto que pretende vender " << endl;
     cin >> id_produto;
+    int saiu = 0;
     int i = 0;
     while(i < numero_de_seccoes){ // Loop sobre todas as secções do armazém
         int j = 0;
         while(j < armazem[i].tamanho_da_seccao){ // Loop sobre todas as peças na secção atual
             if( armazem[i].pecas_aqui[j].numero_de_serie == id_produto){ // Verifica se encontrou o produto
-                total_de_faturacao +=armazem[i].pecas_aqui[j].preco;
-                armazem[i].faturacao_desta_seccao += armazem[i].pecas_aqui[j].preco;
-                int saiu = 0;
+                total_de_faturacao += armazem[i].pecas_aqui[j].preco; //total de faturacao do armazem é adicionado o nova valor vendido
+                armazem[i].faturacao_desta_seccao += armazem[i].pecas_aqui[j].preco;//total de faturacao da seccao é adicionado o nova valor vendido
+                saiu = 0;
                 for(int k= 0; k<tamanho_lista_chegada;k++){
                     if (lista_chegada[k].categoria==armazem[i].pecas_aqui[j].categoria){ //verifica se a peça vendida tem a mesma categoria que uma peça na lista de chegada
                         saiu = 1;
@@ -198,18 +184,18 @@ void vendaManual(seccao* &armazem, int numero_de_seccoes, int &total_de_faturaca
                         break;
                     }
                 }
-                cout << "ao menos chegou aqui"<< endl;
                 if (!saiu){
-                    cout << "ao menos chegou aqui1"<< endl;
                     apagar_peca(armazem[i].pecas_aqui[j]);
                     ordenar_pecas_existentes(armazem[i].pecas_aqui,j,armazem[i].quantidade_na_seccao);
-                    cout << "ao menos chegou aqui2"<< endl;
                 }
                 break;
             }
             j++;
         }
         i++;
+    }
+    if (!saiu){
+        cout << "Id ou seccao nao valida " << endl;
     }
     cin.clear();
 }

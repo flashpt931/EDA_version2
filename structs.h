@@ -20,8 +20,8 @@ struct peca {
 struct seccao {
     string categoria;
     char ID;
-    int tamanho_da_seccao = (rand()%4) +3;
-    peca *pecas_aqui = new peca[tamanho_da_seccao];
+    int tamanho_da_seccao;
+    peca *pecas_aqui;
     int quantidade_na_seccao = 0;
     int faturacao_desta_seccao = 0;
     int tamanho_numeros_de_serie_vendidos_aqui;
