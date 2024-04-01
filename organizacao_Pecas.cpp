@@ -103,9 +103,9 @@ void vendas(seccao *armazem,int numero_de_seccoes, int &total_de_faturacao){
             //entrou na lista de pecas
             if(foi_vendido_ou_nao(armazem[index].pecas_aqui[j].probabilidade_de_ser_vendida)){
                 //foi vendido
-                cout << "foi vendido " <<  " por "<< armazem[index].pecas_aqui[j].preco << endl;
                 total_de_faturacao += armazem[index].pecas_aqui[j].preco;
-                armazem[index].numeros_de_serie_vendidos_aqui[armazem[index].tamanho_numeros_de_serie_vendidos_aqui] = armazem[index].pecas_aqui[j].numero_de_serie;
+                int auxiliar_n_serie = armazem[index].tamanho_numeros_de_serie_vendidos_aqui;
+                armazem[index].numeros_de_serie_vendidos_aqui[auxiliar_n_serie] = armazem[index].pecas_aqui[j].numero_de_serie;
                 armazem[index].tamanho_numeros_de_serie_vendidos_aqui++;
                 armazem[index].faturacao_desta_seccao += armazem[index].pecas_aqui[j].preco;
                 apagar_peca(armazem[index].pecas_aqui[j]);
@@ -180,7 +180,6 @@ void vendaManual(seccao* &armazem, int numero_de_seccoes, int &total_de_faturaca
                         armazem[i].pecas_aqui[j]=lista_chegada[k]; //verifica se tem uma peça na lista de chegada igual à peça vendida
                         apagar_peca(lista_chegada[k]); 
                         ordenar_pecas_existentes(lista_chegada,k, tamanho_lista_chegada);
-                        cout << "entrou neste loop" << endl;
                         break;
                     }
                 }
