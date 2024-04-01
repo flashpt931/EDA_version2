@@ -68,9 +68,36 @@ void alterar_categoria(seccao *&armazem, int &numero_de_seccoes) {
         cout << "A seccao selecionada nao existe!" << endl;
     }
 }
-
-
-
+//3.4
+void add_seccao( int &numero_de_seccoes, seccao *&armazem) {
+    char ID;
+    string categoria;
+    int capacidade;
+    cout<<"ID para nova seccao:"<<endl;
+    cin>>ID;
+    cout<<"categoria para nova seccao:"<<endl;
+    cin.ignore();
+    getline(cin, categoria);
+    cout<<"capacidade para nova seccao:"<<endl;
+    cin>>capacidade;
+    cin.ignore();
+    numero_de_seccoes=numero_de_seccoes + 1;
+    seccao *novo_armazem = new seccao[numero_de_seccoes];
+    for(int i =0;i<numero_de_seccoes-1;i++){
+        novo_armazem[i].ID=armazem[i].ID;
+        novo_armazem[i].categoria=armazem[i].categoria;
+        novo_armazem[i].tamanho_da_seccao=armazem[i].tamanho_da_seccao;
+        novo_armazem[i].quantidade_na_seccao=armazem[i].quantidade_na_seccao;
+        novo_armazem[i].faturacao_desta_seccao=armazem[i].faturacao_desta_seccao;
+        novo_armazem[i].numeros_de_serie_vendidos_aqui=armazem[i].numeros_de_serie_vendidos_aqui;
+        novo_armazem[i].pecas_aqui=armazem[i].pecas_aqui;
+    }
+    armazem=novo_armazem;
+    armazem[numero_de_seccoes-1].ID=ID;
+    armazem[numero_de_seccoes-1].categoria=categoria;
+    armazem[numero_de_seccoes-1].tamanho_da_seccao=capacidade;
+    armazem[numero_de_seccoes-1].pecas_aqui= new peca[capacidade];
+}
 
 
 
