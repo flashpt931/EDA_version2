@@ -176,6 +176,30 @@ Funcoes_de_impressao.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ProjetoEDA.dir\build.make CMakeFiles/ProjetoEDA.dir/Funcoes_de_impressao.cpp.s
 .PHONY : Funcoes_de_impressao.cpp.s
 
+gestao.obj: gestao.cpp.obj
+.PHONY : gestao.obj
+
+# target to build an object file
+gestao.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ProjetoEDA.dir\build.make CMakeFiles/ProjetoEDA.dir/gestao.cpp.obj
+.PHONY : gestao.cpp.obj
+
+gestao.i: gestao.cpp.i
+.PHONY : gestao.i
+
+# target to preprocess a source file
+gestao.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ProjetoEDA.dir\build.make CMakeFiles/ProjetoEDA.dir/gestao.cpp.i
+.PHONY : gestao.cpp.i
+
+gestao.s: gestao.cpp.s
+.PHONY : gestao.s
+
+# target to generate assembly for a file
+gestao.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ProjetoEDA.dir\build.make CMakeFiles/ProjetoEDA.dir/gestao.cpp.s
+.PHONY : gestao.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -287,6 +311,9 @@ help:
 	@echo ... Funcoes_de_impressao.obj
 	@echo ... Funcoes_de_impressao.i
 	@echo ... Funcoes_de_impressao.s
+	@echo ... gestao.obj
+	@echo ... gestao.i
+	@echo ... gestao.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

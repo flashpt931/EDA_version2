@@ -94,6 +94,12 @@
 		<Unit filename="C:/Users/octav/CLionProjects/Grupo18/EDA_version2/Funcoes_de_impressao.h">
 			<Option target="ProjetoEDA"/>
 		</Unit>
+		<Unit filename="C:/Users/octav/CLionProjects/Grupo18/EDA_version2/gestao.cpp">
+			<Option target="ProjetoEDA"/>
+		</Unit>
+		<Unit filename="C:/Users/octav/CLionProjects/Grupo18/EDA_version2/gestao.h">
+			<Option target="ProjetoEDA"/>
+		</Unit>
 		<Unit filename="C:/Users/octav/CLionProjects/Grupo18/EDA_version2/main.cpp">
 			<Option target="ProjetoEDA"/>
 		</Unit>

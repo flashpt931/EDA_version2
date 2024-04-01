@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/octav/CLionProjects/Grupo18/EDA_version2/Abertura_de_ficheiro.cpp" "CMakeFiles/ProjetoEDA.dir/Abertura_de_ficheiro.cpp.obj" "gcc" "CMakeFiles/ProjetoEDA.dir/Abertura_de_ficheiro.cpp.obj.d"
   "C:/Users/octav/CLionProjects/Grupo18/EDA_version2/Funcoes_de_impressao.cpp" "CMakeFiles/ProjetoEDA.dir/Funcoes_de_impressao.cpp.obj" "gcc" "CMakeFiles/ProjetoEDA.dir/Funcoes_de_impressao.cpp.obj.d"
+  "C:/Users/octav/CLionProjects/Grupo18/EDA_version2/gestao.cpp" "CMakeFiles/ProjetoEDA.dir/gestao.cpp.obj" "gcc" "CMakeFiles/ProjetoEDA.dir/gestao.cpp.obj.d"
   "C:/Users/octav/CLionProjects/Grupo18/EDA_version2/main.cpp" "CMakeFiles/ProjetoEDA.dir/main.cpp.obj" "gcc" "CMakeFiles/ProjetoEDA.dir/main.cpp.obj.d"
   "C:/Users/octav/CLionProjects/Grupo18/EDA_version2/menu.cpp" "CMakeFiles/ProjetoEDA.dir/menu.cpp.obj" "gcc" "CMakeFiles/ProjetoEDA.dir/menu.cpp.obj.d"
   "C:/Users/octav/CLionProjects/Grupo18/EDA_version2/organizacao_Pecas.cpp" "CMakeFiles/ProjetoEDA.dir/organizacao_Pecas.cpp.obj" "gcc" "CMakeFiles/ProjetoEDA.dir/organizacao_Pecas.cpp.obj.d"

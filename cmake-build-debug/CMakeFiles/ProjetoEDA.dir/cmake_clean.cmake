@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ProjetoEDA.dir/Abertura_de_ficheiro.cpp.obj.d"
   "CMakeFiles/ProjetoEDA.dir/Funcoes_de_impressao.cpp.obj"
   "CMakeFiles/ProjetoEDA.dir/Funcoes_de_impressao.cpp.obj.d"
+  "CMakeFiles/ProjetoEDA.dir/gestao.cpp.obj"
+  "CMakeFiles/ProjetoEDA.dir/gestao.cpp.obj.d"
   "CMakeFiles/ProjetoEDA.dir/main.cpp.obj"
   "CMakeFiles/ProjetoEDA.dir/main.cpp.obj.d"
   "CMakeFiles/ProjetoEDA.dir/menu.cpp.obj"

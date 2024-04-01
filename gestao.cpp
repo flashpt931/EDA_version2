@@ -47,6 +47,13 @@ void vendaManual(seccao* &armazem, int numero_de_seccoes, int &total_de_faturaca
 }
 
 //3.3
+
+void reseta_seccao(seccao seccao_do_armazem){
+    for (int i = 0; i<seccao_do_armazem.quantidade_na_seccao;i++){
+        apagar_peca(seccao_do_armazem.pecas_aqui[i]);
+    }
+}
+
 void alterar_categoria(seccao *&armazem, int &numero_de_seccoes) {
     cout<<"Qual seccao pertende alterar?" << endl;
     char id_local;
