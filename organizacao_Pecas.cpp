@@ -7,22 +7,22 @@
 #define MAX 50
 using namespace std;
 
-bool serie_existe(int *numeros_de_series_ja_saidos, int &numero_da_serie) {
-    for (int i = 0; numeros_de_series_ja_saidos[i] != 0; i++) {
-        if (numeros_de_series_ja_saidos[i] == numero_da_serie) {
-            return true;
+bool serie_existe(int *numeros_de_series_ja_saidos, int &numero_da_serie) { 
+    for (int i = 0; numeros_de_series_ja_saidos[i] != 0; i++) { //loop sobre todos os números já saídos diferentes de 0 
+        if (numeros_de_series_ja_saidos[i] == numero_da_serie) { //verifica se o número de série é igual a um número de série que já saiu
+            return true; //se tal se verificar, retorna verdadeiro 
         }
     }
-    return false;
+    return false; //caso contrário retorna falso
 }
 int criar_serie(int *numeros_de_series_ja_saidos, int &tamanho) {
-    int numero_da_serie = (rand() % 9000) + 1000;
-    while (serie_existe(numeros_de_series_ja_saidos, numero_da_serie)) {
-        numero_da_serie = (rand() % 9000) + 1000;
+    int numero_da_serie = (rand() % 9000) + 1000;//gera um número aleatório entre 1000 e 9999
+    while (serie_existe(numeros_de_series_ja_saidos, numero_da_serie)) {  //loop que verifica se o número de série já saiu
+        numero_da_serie = (rand() % 9000) + 1000; //caso já exista, gera outro número aleatório 
     }
     tamanho++;
-    numeros_de_series_ja_saidos[tamanho-1] = numero_da_serie;
-    return numeros_de_series_ja_saidos[tamanho-1];
+    numeros_de_series_ja_saidos[tamanho-1] = numero_da_serie;  //adiciona o novo número de série à ultima posição do array
+    return numeros_de_series_ja_saidos[tamanho-1]; //retorna o último número de série adicionado ao array
 }
 
 /*bool comparaMarca(const peca& a, const peca& b) {
@@ -39,8 +39,8 @@ void ordenarPorMarca(peca lista_chegada[],int tamanho_lista_chegada){
     }
 }
 */
-int preco_peca (){
-    return ((rand()%179) + 2) * 5; //10-900
+int preco_peca (){ //gera o preço da peça 
+    return ((rand()%179) + 2) * 5; //gera um número aleatório entre 10-900 e limita esse número entre 0 e 178; adiciona 2, deslocando o intervalo de 2-180; multiplica por 5 para dar multiplos de 5, entre 10 e 900 
 }
 int atribuicao_de_probabilade() {
     int probabilidade = rand() % 46 + 5; // [0,45] -> [5,50]
@@ -189,10 +189,10 @@ void vendaManual(seccao* &armazem, int numero_de_seccoes, int &total_de_faturaca
                 armazem[i].faturacao_desta_seccao += armazem[i].pecas_aqui[j].preco;
                 int saiu = 0;
                 for(int k= 0; k<tamanho_lista_chegada;k++){
-                    if (lista_chegada[k].categoria==armazem[i].pecas_aqui[j].categoria){
+                    if (lista_chegada[k].categoria==armazem[i].pecas_aqui[j].categoria){ //verifica se a peça vendida tem a mesma categoria que uma peça na lista de chegada
                         saiu = 1;
-                        armazem[i].pecas_aqui[j]=lista_chegada[k];
-                        apagar_peca(lista_chegada[k]);
+                        armazem[i].pecas_aqui[j]=lista_chegada[k]; //verifica se tem uma peça na lista de chegada igual à peça vendida
+                        apagar_peca(lista_chegada[k]); 
                         ordenar_pecas_existentes(lista_chegada,k, tamanho_lista_chegada);
                         cout << "entrou neste loop" << endl;
                         break;
